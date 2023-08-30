@@ -11,5 +11,11 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  body {
+    background: ${(props) => props.theme.background};
+    -webkit-font-smoothing: antialiased;
   }
 `;
