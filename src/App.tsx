@@ -1,8 +1,5 @@
 export function App() {
-
   return (
-    <>
-      <p>Coffee Delivery</p>
-    </>
-  )
+    <p>Coffee Delivery</p>
+  );
 }
