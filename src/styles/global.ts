@@ -18,4 +18,9 @@ export const GlobalStyle = createGlobalStyle`
     background: ${(props) => props.theme.background};
     -webkit-font-smoothing: antialiased;
   }
+
+  &:focus {
+    border: 0;
+    outline: 0;
+  }
 `;
