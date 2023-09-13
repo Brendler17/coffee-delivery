@@ -1,12 +1,16 @@
+import { useContext } from 'react';
 import {
   Coffee, Package, ShoppingCart, Timer,
 } from '@phosphor-icons/react';
+import { CoffeeContext } from '../../contexts/CoffeeContext';
 import {
   HomeContainer, HomeHeader, HomeInfo, HomeItens, InfoIten, ListContainer, CoffeeList, CoffeeCard,
 } from './styles';
 import coffeeDeliveryBanner from '../../assets/banner.svg';
 
 export function Home() {
+  const { coffees } = useContext(CoffeeContext);
+
   return (
     <HomeContainer>
       <HomeHeader>
@@ -39,19 +43,30 @@ export function Home() {
       <ListContainer>
         <h3>Nossos cafés</h3>
         <CoffeeList>
-          <CoffeeCard>
-            {/* <img src="" alt="" />
-            <span>Tradicional</span>
-            <h3>Expresso Tradicional</h3>
-            <p>O tradicional café feito com água quente e grãos moídos</p>
-            <div>
-              <p>R$9,90</p>
-              <input type="number" />
-              <button type="submit">
-                <ShoppingCart size={16} weight="fill" />
-              </button>
-            </div> */}
-          </CoffeeCard>
+          {coffees.map((coffee) => (
+            <CoffeeCard key={coffee.id}>
+              <img src={coffee.img} alt="" />
+              <div>
+                {coffee.types.map((type) => (
+                  <span>{type}</span>
+                ))}
+              </div>
+              <h3>{coffee.name}</h3>
+              <p>{coffee.description}</p>
+              <div>
+                <div>
+                  <p>R$</p>
+                  <p>{`${coffee.price.toString()}0`}</p>
+                </div>
+                <form>
+                  <input type="number" />
+                  <button type="submit">
+                    <ShoppingCart size={22} weight="fill" color="white" />
+                  </button>
+                </form>
+              </div>
+            </CoffeeCard>
+          ))}
         </CoffeeList>
       </ListContainer>
     </HomeContainer>
