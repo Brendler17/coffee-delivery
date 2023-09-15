@@ -56,7 +56,7 @@ export function Home() {
               <div>
                 <div>
                   <p>R$</p>
-                  <p>{`${coffee.price.toString()}0`}</p>
+                  <p>{`${coffee.price}0`.replace('.', ',')}</p>
                 </div>
                 <form>
                   <input type="number" />

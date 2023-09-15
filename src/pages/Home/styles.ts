@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const HomeContainer = styled.main`
   max-width: 70rem;
-  margin: 5rem auto;
+  margin: calc(5rem + 110px) auto 0;
 `;
 
 export const HomeHeader = styled.section`
