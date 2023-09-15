@@ -1,6 +1,16 @@
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.nav`
+export const HeaderContainer = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999px;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.5);
+  background: ${(props) => props.theme.background};
+`;
+
+export const NavContainer = styled.nav`
   padding: 2rem 10rem;
   display: flex;
   align-items: center;
