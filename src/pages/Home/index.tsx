@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
 import {
   Coffee, Package, ShoppingCart, Timer,
 } from '@phosphor-icons/react';
@@ -10,6 +11,14 @@ import coffeeDeliveryBanner from '../../assets/banner.svg';
 
 export function Home() {
   const { coffees } = useContext(CoffeeContext);
+
+  const { handleSubmit, register } = useForm();
+
+  function handleAddCoffeeToCart(data: FieldValues, coffeeId: number) {
+    const quantity = data[`quantity${coffeeId}`];
+    console.log(quantity);
+    // add quantity of coffee.id to cart
+  }
 
   return (
     <HomeContainer>
@@ -58,8 +67,16 @@ export function Home() {
                   <p>R$</p>
                   <p>{`${coffee.price}0`.replace('.', ',')}</p>
                 </div>
-                <form>
-                  <input type="number" />
+                <form
+                  onSubmit={handleSubmit((response) => handleAddCoffeeToCart(response, coffee.id))}
+                  action="submit"
+                >
+                  <input
+                    id="quantity"
+                    type="number"
+                    min={1}
+                    {...register(`quantity${coffee.id}`)}
+                  />
                   <button type="submit">
                     <ShoppingCart size={22} weight="fill" color="white" />
                   </button>
