@@ -1,25 +1,13 @@
-import { useContext } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
 import {
   Coffee, Package, ShoppingCart, Timer,
 } from '@phosphor-icons/react';
-import { CoffeeContext } from '../../contexts/CoffeeContext';
 import {
   HomeContainer, HomeHeader, HomeInfo, HomeItens, InfoIten, ListContainer, CoffeeList, CoffeeCard,
 } from './styles';
 import coffeeDeliveryBanner from '../../assets/banner.svg';
+import { coffees } from '../../../data.json';
 
 export function Home() {
-  const { coffees } = useContext(CoffeeContext);
-
-  const { handleSubmit, register } = useForm();
-
-  function handleAddCoffeeToCart(data: FieldValues, coffeeId: number) {
-    const quantity = data[`quantity${coffeeId}`];
-    console.log(quantity);
-    // add quantity of coffee.id to cart
-  }
-
   return (
     <HomeContainer>
       <HomeHeader>
@@ -54,7 +42,7 @@ export function Home() {
         <CoffeeList>
           {coffees.map((coffee) => (
             <CoffeeCard key={coffee.id}>
-              <img src={coffee.img} alt="" />
+              <img src={coffee.image} alt="" />
               <div>
                 {coffee.types.map((type) => (
                   <span>{type}</span>
@@ -67,20 +55,15 @@ export function Home() {
                   <p>R$</p>
                   <p>{`${coffee.price}0`.replace('.', ',')}</p>
                 </div>
-                <form
-                  onSubmit={handleSubmit((response) => handleAddCoffeeToCart(response, coffee.id))}
-                  action="submit"
-                >
-                  <input
-                    id="quantity"
-                    type="number"
-                    min={1}
-                    {...register(`quantity${coffee.id}`)}
-                  />
-                  <button type="submit">
-                    <ShoppingCart size={22} weight="fill" color="white" />
-                  </button>
-                </form>
+                <input
+                  id="quantity"
+                  type="number"
+                  min={1}
+                />
+                <button type="button">
+                  <ShoppingCart size={22} weight="fill" color="white" />
+                </button>
+
               </div>
             </CoffeeCard>
           ))}
