@@ -2,10 +2,11 @@ import {
   Coffee, Package, ShoppingCart, Timer,
 } from '@phosphor-icons/react';
 import {
-  HomeContainer, HomeHeader, HomeInfo, HomeItens, InfoIten, ListContainer, CoffeeList, CoffeeCard,
+  HomeContainer, HomeHeader, HomeInfo, HomeItens, InfoIten, ListContainer, CoffeeList,
 } from './styles';
 import coffeeDeliveryBanner from '../../assets/banner.svg';
 import { coffees } from '../../../data.json';
+import { CoffeeCard } from '../../components/CoffeeCard';
 
 export function Home() {
   return (
@@ -41,31 +42,7 @@ export function Home() {
         <h3>Nossos cafés</h3>
         <CoffeeList>
           {coffees.map((coffee) => (
-            <CoffeeCard key={coffee.id}>
-              <img src={coffee.image} alt="" />
-              <div>
-                {coffee.types.map((type) => (
-                  <span>{type}</span>
-                ))}
-              </div>
-              <h3>{coffee.name}</h3>
-              <p>{coffee.description}</p>
-              <div>
-                <div>
-                  <p>R$</p>
-                  <p>{`${coffee.price}0`.replace('.', ',')}</p>
-                </div>
-                <input
-                  id="quantity"
-                  type="number"
-                  min={1}
-                />
-                <button type="button">
-                  <ShoppingCart size={22} weight="fill" color="white" />
-                </button>
-
-              </div>
-            </CoffeeCard>
+            <CoffeeCard key={coffee.id} coffee={coffee} />
           ))}
         </CoffeeList>
       </ListContainer>
