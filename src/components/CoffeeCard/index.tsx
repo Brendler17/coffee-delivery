@@ -1,5 +1,8 @@
 import { ShoppingCart } from '@phosphor-icons/react';
-import { Card, Form } from './styles';
+import {
+  Action,
+  Card, Description, Form, Img, Price, Title, Types,
+} from './styles';
 
 type Props = {
   coffee: {
@@ -15,20 +18,27 @@ type Props = {
 export function CoffeeCard({ coffee }: Props) {
   return (
     <Card>
-      <img src={coffee.image} alt="" />
-      <div>
+
+      <Img src={coffee.image} alt="" />
+
+      <Types>
         {coffee.types.map((type) => (
           <span>{type}</span>
         ))}
-      </div>
-      <h3>{coffee.name}</h3>
-      <p>{coffee.description}</p>
-      <div>
-        <div>
+      </Types>
+
+      <Title>{coffee.name}</Title>
+
+      <Description>{coffee.description}</Description>
+
+      <Form>
+
+        <Price>
           <p>R$</p>
           <p>{`${coffee.price}0`.replace('.', ',')}</p>
-        </div>
-        <Form>
+        </Price>
+
+        <Action>
           <input
             id="quantity"
             type="number"
@@ -37,8 +47,9 @@ export function CoffeeCard({ coffee }: Props) {
           <button type="button">
             <ShoppingCart size={22} weight="fill" color="white" />
           </button>
-        </Form>
-      </div>
+        </Action>
+
+      </Form>
     </Card>
   );
 }

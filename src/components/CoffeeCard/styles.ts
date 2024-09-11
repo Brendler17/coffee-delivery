@@ -8,14 +8,16 @@ export const Card = styled.div`
   padding: 0 1.25rem 1.25rem;
   background: ${(props) => props.theme.card};
   border-radius: 6px 36px;
+`;
 
-  img {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 0.75rem;
-    margin-top: -22px;
-  }
+export const Img = styled.img`
+  width: 120px;
+  height: 120px;
+  margin-bottom: 0.75rem;
+  margin-top: -22px;
+`;
 
+export const Types = styled.div`
   span {
     color: ${(props) => props.theme['yellow-500']};
     font-size: 0.625rem;
@@ -30,48 +32,48 @@ export const Card = styled.div`
   span + span {
     margin-left: 8px;
   }
+`;
 
-  h3 {
-    font-family: 'Baloo 2', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: ${(props) => props.theme.subtitle};
-    padding: 1rem 0 0.25rem;
-  }
+export const Title = styled.h3`
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: ${(props) => props.theme.subtitle};
+  padding: 1rem 0 0.25rem;
+`;
 
-  p {
-    color: ${(props) => props.theme.label};
-    font-size: 0.875rem;
-    text-align: center;
-    padding: 0.5rem 0 2rem;
-  }
-
-  div:nth-child(5) {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-
-    div {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-
-      p{
-        padding: 0;
-        color: ${(props) => props.theme.text};
-        font-size: 0.875rem;
-      }
-
-      p:last-child {
-        font-family: 'Baloo 2', sans-serif;
-        font-size: 1.5rem;
-        font-weight: 800;
-      }
-    }
-  }
+export const Description = styled.p`
+  color: ${(props) => props.theme.label};
+  font-size: 0.875rem;
+  text-align: center;
+  padding: 0.5rem 0 2rem;
 `;
 
 export const Form = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+`;
+
+export const Price = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  p{
+    padding: 0;
+    color: ${(props) => props.theme.text};
+    font-size: 0.875rem;
+  }
+
+  p:last-child {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+`;
+
+export const Action = styled.div`
   display: flex;
   gap: 8px;
       
