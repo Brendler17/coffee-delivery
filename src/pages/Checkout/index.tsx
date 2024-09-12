@@ -1,4 +1,4 @@
-import { FormEvent } from 'react';
+import { FormEvent, useContext } from 'react';
 import {
   Bank, CreditCard, CurrencyDollar, MapPinLine, Money, Trash,
 } from '@phosphor-icons/react';
@@ -8,26 +8,24 @@ import {
   DeliveryContainer, OrderContainer, OrderForm, OrderInfo, OrderTotal,
   PaymentForm, PaymentFormHeader, PaymentFormInputs, PaymentOption,
 } from './styles';
+import { CartContext } from '../../contexts/CartContext';
+import { coffees } from '../../../data.json';
 
 export function Checkout() {
-  const cartCoffes = [
-    {
-      id: 1,
-      img: '../expresso.svg',
-      name: 'Expresso Tradicional',
-      types: ['tradicional'],
-      description: 'O tradicional café feito com água quente e grãos moídos',
-      price: 9.90,
-    },
-    {
-      id: 2,
-      img: '../americano.svg',
-      name: 'Expresso Americano',
-      types: ['tradicional'],
-      description: 'Expresso diluído, menos intenso que o tradicional',
-      price: 9.90,
-    },
-  ];
+  const { itemsCart } = useContext(CartContext);
+
+  const coffeesInCart = itemsCart.map((item) => {
+    const infoCoffee = coffees.find((coffee) => coffee.id === item.id);
+
+    if (!infoCoffee) {
+      throw new Error('Café não encontrado');
+    }
+
+    return {
+      ...infoCoffee,
+      quantity: item.quantity,
+    };
+  });
 
   function handleCreateNewOrder(event: FormEvent) {
     event.preventDefault();
@@ -89,14 +87,14 @@ export function Checkout() {
         <OrderForm>
           <CartContainer>
             {
-              cartCoffes.map((coffee) => (
+              coffeesInCart.map((coffee) => (
                 <CoffeeCartContainer>
                   <CoffeeCartInfo>
-                    <img src={coffee.img} alt="" />
+                    <img src={coffee.image} alt="" />
                     <div>
                       <p>{coffee.name}</p>
                       <CoffeeCartForm>
-                        <input type="number" />
+                        <input type="number" value={coffee.quantity} />
                         <button type="button">
                           <Trash size={16} />
                           Remover
